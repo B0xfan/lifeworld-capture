@@ -19,6 +19,10 @@ Paste, drop or attach a picture and it is saved with the capture.
 
 No shortcut is set when you install it. To open the capture box from any app with your keyboard, go to Settings, General, Global shortcut, click Record and press the keys you want.
 
+## Manual
+
+The [user manual](docs/LifeWorld-Capture-manual.pdf) (PDF) covers every destination, the task words, pictures and each settings tab.
+
 ## Good to know
 
 - Computers only. Made and tested on the Mac; Windows and Linux are untested. Phones have no menu bar, so the plugin does not load there.
@@ -32,7 +36,7 @@ Settings, Community plugins, Browse, search for "LifeWorld Capture", then Instal
 
 ## Support
 
-If it helps you, you can [buy me a coffee](https://buymeacoffee.com/workbenchgoods).
+Questions and problems: [open an issue](https://github.com/B0xfan/lifeworld-capture/issues). If it helps you, you can [buy me a coffee](https://buymeacoffee.com/workbenchgoods).
 
 ## Licence
 

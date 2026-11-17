@@ -222,7 +222,7 @@ function timeText(t, short) {
 /* ---- end of SHARED date helpers ------------------------------------------- */
 
 /* ========================================================================== *
- * SHARED quick add with a4-planner and a4-menubar-capture (verbatim copies;
+ * SHARED quick add with LifeWorld's Planner and Projects (verbatim copies;
  * do not edit here without editing both the same way; the tests compare them
  * character for character). Plain words -> a new task: "call Ana friday 3pm
  * !high". Uses the SHARED date helpers above.
@@ -1422,12 +1422,12 @@ class LifeWorldCapturePlugin extends Plugin {
       case 'blur': if (!this.dialogOpen && this.panelOpen && Date.now() - (this.openedAt || 0) > 700) this.hidePanel(false); break;
       case 'edit-dests': this.openSettings('dests'); break;
       case 'pick-files': await this.pickFiles(reply); break;
-      case 'preview': { let p = null; try { p = this.taskPreview(m); } catch (e) { console.error('[a4-menubar-capture] preview failed', e); } reply({ t: 'preview', seq: m.seq, pv: p }); break; }
+      case 'preview': { let p = null; try { p = this.taskPreview(m); } catch (e) { console.error('[lifeworld-capture] preview failed', e); } reply({ t: 'preview', seq: m.seq, pv: p }); break; }
       case 'save': {
         if (this.saving) return;
         this.saving = true;
         try { const r = await this.save(m); reply({ t: 'saved', ok: true, label: r.label, path: r.path, seq: m.seq }); }
-        catch (e) { if (!(e && e.user)) console.error('[a4-menubar-capture] save failed', e); reply({ t: 'saved', ok: false, msg: (e && e.message) || 'Could not save. Nothing was lost; try again.', seq: m.seq }); }
+        catch (e) { if (!(e && e.user)) console.error('[lifeworld-capture] save failed', e); reply({ t: 'saved', ok: false, msg: (e && e.message) || 'Could not save. Nothing was lost; try again.', seq: m.seq }); }
         finally { this.saving = false; }
         break;
       }

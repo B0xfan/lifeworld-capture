@@ -1,7 +1,7 @@
 {
   "id": "lifeworld-capture",
   "name": "LifeWorld Capture",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "minAppVersion": "1.7.2",
   "description": "A menu bar icon and an optional system-wide shortcut that open a small capture box: today's daily note, an inbox note, a task, or your own note types. Works with LifeWorld. Computers only.",
   "author": "John Hesch",
