@@ -1,0 +1,72 @@
+# LifeWorld Capture releases. Pushing a version tag (e.g. 1.0.0) creates the GitHub release with
+# main.js, manifest.json and styles.css, and a signed build provenance attestation for them. There is no
+# build: the three files are committed as they ship. The release notes are the tag's message.
+name: Release
+
+on:
+  push:
+    tags:
+      - '*'
+
+permissions: {}
+
+jobs:
+  # Obsidian's own directory-scanner checks (manifest, versions.json, README, licence and the
+  # scanner's ESLint and Stylelint rule sets). strict: scanner errors fail this job, so no release is made.
+  # pr mode, not release mode: release mode makes its own draft release, and the release is made below.
+  # Scanner warnings never fail this job; `npm run lint` fails on every warning first.
+  # Third-party code: its own job with a read-only token and no stored git credentials, pinned to a commit.
+  scan:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          persist-credentials: false
+
+      - name: Obsidian directory scanner checks (official action)
+        uses: obsidianmd/obsidian-workflows@8167caed39664214d82c86fdfa32e06d8d55f61d # v1
+        with:
+          mode: pr
+          scanner-lint: true
+          strict: true
+
+  release:
+    needs: scan
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      id-token: write
+      attestations: write
+    steps:
+      - uses: actions/checkout@v6
+
+      - name: Check the tag matches manifest.json and versions.json
+        run: |
+          v="$(jq -r .version manifest.json)"
+          [ "$v" = "$GITHUB_REF_NAME" ] || { echo "Tag $GITHUB_REF_NAME does not match manifest.json version $v"; exit 1; }
+          jq -e --arg v "$v" 'has($v)' versions.json > /dev/null || { echo "versions.json has no $v"; exit 1; }
+
+      - name: Attest build provenance
+        uses: actions/attest@v4
+        with:
+          subject-path: |
+            main.js
+            manifest.json
+            styles.css
+
+      # Checkout keeps the tag as a plain pointer, so --notes-from-tag would publish the commit message.
+      # Fetching the tag by name brings its message back.
+      - name: Fetch the tag's release notes
+        run: git fetch --force --depth=1 origin "refs/tags/$GITHUB_REF_NAME:refs/tags/$GITHUB_REF_NAME"
+
+      - name: Create the release
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh release create "$GITHUB_REF_NAME" \
+            --title "LifeWorld Capture $GITHUB_REF_NAME" \
+            --notes-from-tag \
+            --verify-tag \
+            main.js manifest.json styles.css

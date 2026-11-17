@@ -1,0 +1,36 @@
+/* LifeWorld Capture: settings tab only (the capture panel styles itself).
+   Every selector carries html:not(#lwc-guard) so a theme's id-free rules
+   can't outrank it. */
+html:not(#lwc-guard) .lwc-tabs { display: flex; justify-content: center; gap: 2px; margin: 4px auto 14px; background: var(--background-modifier-hover); border-radius: 8px; padding: 2px; width: max-content; max-width: 100%; flex-wrap: wrap; }
+html:not(#lwc-guard) .lwc-tab { padding: 4px 12px; border-radius: 6px; cursor: pointer; font-size: var(--font-ui-small); color: var(--text-normal); user-select: none; }
+html:not(#lwc-guard) .lwc-tab:hover { background: var(--background-modifier-active-hover); }
+html:not(#lwc-guard) .lwc-tab.is-on { background: var(--background-primary); box-shadow: 0 1px 2px rgba(0,0,0,.15); font-weight: var(--font-semibold); }
+html:not(#lwc-guard) .lwc-tab:focus-visible { outline: 2px solid var(--interactive-accent); }
+html:not(#lwc-guard) .lwc-warn { margin: 0 0 10px; padding: 8px 10px; border-radius: 6px; background: rgba(var(--color-red-rgb), .1); color: var(--text-error); }
+html:not(#lwc-guard) .lwc-status { margin-top: 4px; }
+html:not(#lwc-guard) .lwc-status.is-ok { color: var(--color-green); }
+html:not(#lwc-guard) .lwc-status.is-bad { color: var(--text-error); }
+html:not(#lwc-guard) .lwc-kbd { font: 500 12px var(--font-monospace); border: 1px solid var(--background-modifier-border); border-radius: 4px; padding: 1px 6px; color: var(--text-muted); white-space: nowrap; }
+html:not(#lwc-guard) .lwc-kbd.is-rec { color: var(--text-accent); border-color: var(--interactive-accent); }
+html:not(#lwc-guard) .lwc-lbl { color: var(--text-muted); font-size: var(--font-ui-small); }
+html:not(#lwc-guard) .lwc-format { width: 110px; }
+html:not(#lwc-guard) .lwc-wide { width: 100%; min-width: 280px; }
+html:not(#lwc-guard) .lwc-intro { border-bottom: 0; }
+html:not(#lwc-guard) .lwc-dtab { width: 100%; border-collapse: collapse; font-size: var(--font-ui-small); }
+html:not(#lwc-guard) .lwc-dtab th, html:not(#lwc-guard) .lwc-dtab td { border-bottom: 1px solid var(--background-modifier-border); padding: 4px 6px; text-align: left; vertical-align: middle; }
+html:not(#lwc-guard) .lwc-dtab th { color: var(--text-muted); font-weight: var(--font-normal); }
+html:not(#lwc-guard) .lwc-mvcell { width: 34px; white-space: nowrap; }
+html:not(#lwc-guard) .lwc-mv { cursor: pointer; padding: 0 3px; color: var(--text-muted); font-size: 10px; }
+html:not(#lwc-guard) .lwc-mv:hover { color: var(--text-normal); }
+html:not(#lwc-guard) .lwc-lock { font-size: 11px; }
+html:not(#lwc-guard) .lwc-act { white-space: nowrap; text-align: right; }
+html:not(#lwc-guard) .lwc-act button { padding: 2px 9px; font-size: var(--font-ui-smaller); height: auto; margin-left: 4px; }
+html:not(#lwc-guard) .lwc-addrow { margin-top: 8px; }
+html:not(#lwc-guard) .lwc-edform { margin-top: 12px; padding: 12px; border: 1px solid var(--background-modifier-border); border-radius: 8px; background: var(--background-secondary); }
+html:not(#lwc-guard) .lwc-edtitle { font-weight: var(--font-semibold); margin-bottom: 8px; }
+html:not(#lwc-guard) .lwc-grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 8px 12px; }
+html:not(#lwc-guard) .lwc-grid2 label, html:not(#lwc-guard) .lwc-tpl { font-size: var(--font-ui-small); color: var(--text-muted); display: flex; flex-direction: column; gap: 3px; }
+html:not(#lwc-guard) .lwc-tpl { margin-top: 8px; }
+html:not(#lwc-guard) .lwc-tpl textarea { font: 12px var(--font-monospace); min-height: 56px; width: 100%; }
+html:not(#lwc-guard) .lwc-err { color: var(--text-error); font-size: var(--font-ui-small); min-height: 1em; margin-top: 6px; }
+html:not(#lwc-guard) .lwc-btns { display: flex; gap: 8px; justify-content: flex-end; margin-top: 6px; }
